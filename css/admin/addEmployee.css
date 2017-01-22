@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+
+.contentAddEmployee{
+	margin-top:30px;	
+	
+}
+
+.addBtn{
+	
+	text-align:center;
+}
+
+.picDiv{
+	
+	    height: 190px;
+    margin-top: 0px;
+}
+
+#employeePic{
+	  border: 1px solid #CCCCCC;
+	    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+	
+}
+
+.status{
+	
+	    font-size: larger;
+    color: red;
+}
+
+.uploadEmployeePhoto{
+	width:95px;
+	
+}
+
+span{
+	color:red;
+	
+}

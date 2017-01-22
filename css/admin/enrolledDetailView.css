@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+
+.enrolledDetails {
+    height: auto;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.getinfo {
+    border-bottom: 1px solid;
+   margin-top:20px;
+   padding-bottom:20px;
+}
+
+.basicInfo {
+    margin-top: 20px;
+}
+
+.photoSec{
+	
+	height:100px;
+	width:100px;
+	border:1px solid #cccccc;
+	
+}
+
+.photoLink{
+	
+	    display: block;
+    height: 99px;
+    width: 99px;
+    border: 1px solid black;
+        cursor: pointer;
+	
+}
+
+.enrolledDetailsBtn{
+	text-align:center;
+	margin-bottom:20px;
+}
+
+.editUploadedDoc{
+	width: 95px;
+	padding: 0px;
+}

@@ -1,0 +1,23 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	background-color: #E22E36;
+	
+}
+
+.modal-body{
+	text-align:center;
+	
+}
+
+.astrik{
+	    font-size: 9px;
+    text-align: left;
+    color: red;
+    font-weight: 800;
+}
+
+#warningStatus{
+	color:red;
+	
+}

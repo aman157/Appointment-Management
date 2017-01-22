@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+.header{
+	height: 70px;
+}
+
+.navbar {
+     border-radius: 0px;
+}
+
+.navbar-inverse {
+     border-color: #E22E36;
+}
+
+.headerNav{
+	height: 70px;
+    background-color: #E22E36;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.navbar-nav>li>a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+	padding:25px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: black;
+}
+
+/*modal Css*/
+
+#adminBtn{
+	background-color: rgb(81, 80, 80);
+    color: white;
+}
+
+.modal-title{
+	    text-align: center;
+}
+
+.loginLogo{
+	    margin: auto;
+}
+
+.adminemployeeBtn{
+	    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modalFooter{
+	text-align:center;
+}
+
+/* modal box css end*/
+
+.head{
+	background-color: rgba(239, 228, 229, 0.33);
+}
+
+#errorMessage  {  
+	text-align: center;
+    color: red;
+    font-size: 15px;
+}
+.footer{
+	height: 70px;
+    background-color: #E22E36;
+	text-align: center;
+    margin-top: 15px;	
+}
+
+#SendRecoveryPasswordMail{
+	
+		margin-top:25px;
+	}
+	
+.sr-only {
+    position: relative; 
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: left;
+    pointer-events: none;
+}
