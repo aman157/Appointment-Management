@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<package name="default" namespace="/" extends="struts-default,json-default">
+
+	<!-- Interceptors for admin session-->
+		<interceptors>
+			<interceptor name="loginInterceptors" class="org.mz.interceptor.LoginInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInterceptors" />
+			</interceptor-stack>
+			
+			
+			 <interceptor name="loginInterceptorsTrainee" class="org.mz.interceptor.LoginInterceptorTrainee" />
+			<interceptor-stack name="loginStackTrainee">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInterceptorsTrainee" />
+			</interceptor-stack> 
+		</interceptors>
+	<!-- Interceptor for admin session End-->
+	
+
+
+		<global-results>
+			<result name="login">/pages/client/index.jsp</result>
+		</global-results>
+
+
+
+		<!-- Meeting Slip Entry -->
+		<action name="meetingSlipEntries" 
+			class="org.mz.action.MeetingSlipEntriesAction">
+			<result name="success">Status.jsp</result>
+			<result name="error">Status.jsp</result>
+		</action>
+		<!-- Meeting Slip Entry close -->
+		
+			<!--Fee Slip For trainee -->
+		<action name="fromAdminFeeSLip" 
+			class="org.mz.action.AdminFeeSlip">
+			<result name="success">/pages/admin/feeSlip.jsp</result>
+			<result name="error">Status.jsp</result>
+		</action>
+		<!-- Fee Slip for trainee End -->
+		
+			<!--installments For trainee -->
+		<action name="installments" 
+			class="org.mz.action.Installments">
+			<result name="success" type="json"/>
+		</action>
+		<!-- Fee Slip for trainee End -->
+		
+			<!-- Delete  Meeting Slip Entry -->
+		<action name="fromAdminEnrolledDetailViewDelete" 
+			class="org.mz.action.DeleteMeetingSlipEntries">
+			<result name="success" type="redirect">adminHome</result>
+		</action>
+		<!-- Delete Meeting Slip Entry close -->
+		
+		
+		
+		<action name="meetingSlipEntriesbyAdmin" 
+			class="org.mz.action.MeetingSlipEntriesAction">
+			<result name="success">StatusAdmin.jsp</result>
+			<result name="error">StatusAdmin.jsp</result>
+		</action>
+
+
+
+		<!-- close button Action -->
+		<action name="close"
+			class="org.mz.action.CloseAction">
+			<result name="success">/pages/client/index.jsp</result>
+		</action>
+		<!-- close button action end -->
+		
+			<!-- close button Action -->
+		<action name="closeAdmin"
+			class="org.mz.action.CloseAction">
+			<result name="success" type="redirect">adminHome</result>
+		</action>
+		<!-- close button action end -->
+
+
+
+		<!--admin login button Action -->
+		<action name="loginAdmin" 
+			class="org.mz.action.loginAction" method="execute">
+			<result name="success" type="json"/>
+			<result name="error" />
+		</action>
+		<action name="adminHome" 
+			class="org.mz.action.loginAction" method="check">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+			<result name="success">/pages/admin/adminHome.jsp</result>
+			<result name="loginAdmin">/sessionExpired.jsp</result>
+		</action>
+		<!-- admin login button action end -->
+		
+		 <!--trainee login button Action -->
+		  <action name="loginTrainee" 
+			class="org.mz.action.LoginActionTrainee" method="execute">
+			<result name="success" type="json"/>
+			<result name="error"/>
+		</action>
+
+
+		<action name="traineeHome" 
+			class="org.mz.action.LoginActionTrainee" method="checkTrainee">
+			<interceptor-ref name="loginStackTrainee"></interceptor-ref>
+			<result name="success">/pages/client/traineeHome.jsp</result>
+			<result name="loginTrainee">/sessionExpired.jsp</result>
+		</action> 
+		
+		
+		  <action name="logoutTrainee" 
+			class="org.mz.action.LoginActionTrainee" method="logout">
+			<result name="loginTrainee">/pages/client/index.jsp</result>
+		
+		</action> 		
+		
+		<!-- trainee login button action end --> 
+
+
+
+		<!-- logout Action -->
+		<action name="logout" 
+			class="org.mz.action.loginAction" method="logout">
+			<result name="success">/pages/client/index.jsp</result>
+		</action>
+		<!-- logout action end -->
+		
+		
+		
+		<!--Dummy action for navigation admin pannel-->
+		<action name="search">
+			<result>/pages/admin/search.jsp</result>
+		</action>
+		
+		
+		<action name="addEmployee">
+			<result>/pages/admin/addEmployee.jsp</result>
+		</action>
+		
+		
+		<action name="viewEmployee" 
+			class="org.mz.action.ViewEmployeeAction">
+			<result>/pages/admin/viewEmployee.jsp</result>
+		</action>
+		
+		
+		<action name="feestructure" 
+			class="org.mz.action.ViewFeeStructureAction">
+			<result name="success">/pages/admin/feestructure.jsp</result>
+		</action>
+		
+		<action name="addMetingSlip">
+			<result>/pages/admin/AddMeetingSlip.jsp</result>
+		</action>
+		
+		
+		
+		<!--Dummy action for navigation admin pannel End-->
+		
+		
+		
+		<!-- search button  Action -->
+		<action name="searchForm" 
+			class="org.mz.action.SearchAction">
+			<result name="success">/pages/admin/viewSearch.jsp</result>
+		</action>
+		<!-- search button  Action END -->
+		
+		
+		
+		<!-- id card show button -->
+		<action name="showIdCard" 
+			class="org.mz.action.ShowIdCard">
+			<result name="success" type="json"/>
+		</action>
+		<!-- id card show button End -->
+		
+		
+		<!-- trainer list show -->
+		<action name="generateTrainerList" 
+			class="org.mz.action.GenerateTrainerList">
+			<result name="success" type="json"/>
+		</action>
+		<!-- trainer list End -->
+		
+		<!-- training list show -->
+		<action name="generateTrainingList" 
+			class="org.mz.action.GenerateTrainingList">
+			<result name="success" type="json"/>
+		</action>
+		<!-- training list End -->
+
+	
+		
+		<!-- send id card Button -->
+		<action name="sendIdCard" 
+			class="org.mz.action.SendIdCardAction">
+			<result name="success" type="json" ></result>
+			<result name="error" type="json" ></result>
+		</action>
+		<!-- send id card Button End -->
+		
+		
+		
+		<!-- pdf generation for id card -->
+		<action name="idCardPdf" 
+			class="org.mz.action.IdCardPdf">
+			<result name="success" type="json"/>
+		</action>
+		
+		 <action name="idCardDownload" 
+			class="org.mz.action.IdCardPdf" method="idCardDownload">
+			<result name="success" type="stream">
+                <param name="contentDisposition">attachment;filename=${fileName}</param>
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="bufferSize">1024</param>
+        </result>
+			
+		</action> 
+		<!-- pdf generation for idcard end -->
+
+
+
+		<!-- from admin side and Email link click  Enrolled Detail view -->
+		<action name="fromAdminEnrolledDetailView" 
+			class="org.mz.action.registeringEnrollenment">
+			<result name="success">/pages/admin/admissionForm.jsp</result>
+			<result name="error">/AlreadyEnrolledError.jsp</result>
+			<result name="SUCCESSFORMAILUSER">/pages/client/admissionFormClient.jsp</result>
+		</action>
+		<!-- from admin side and Email link click  Enrolled Detail view End -->
+
+
+		
+		<!-- adding enrolled data to database -->
+			<action name="addingEnrolledDataToDatabase" 
+				class="org.mz.action.AddingEnrolledDataToDatabase">
+				<result name="success" type="redirect">adminHome</result>
+				<result name="error" type="redirect">adminHome</result>
+				<result name="SuccessFromEmail">/statusEnrolledFromEmail.jsp</result>
+		</action>
+		<!-- adding enrolled data to database End -->
+		
+		
+		<!-- update enrolled data to database -->
+			<action name="updatEnrolledDetail" 
+				class="org.mz.action.UpdateEnrolledDetails">
+				<result name="success" type="redirectAction">
+				<param name="actionName">enrolledDetailView</param>
+				<param name="uidForEnrolled">${uidForupdateToEnrolled}</param>
+				</result>
+		</action>
+		<!-- update enrolled data to database End -->
+		
+		<!-- Deletion of academic Detail from database -->
+		<action name="deleteAcademicfromDatabase" 
+			class="org.mz.action.DeleteAcademicfromDatabase">
+			<result name="success" />
+		</action>
+		<!-- Deletion of academic Detail from database -->
+		
+		
+		
+		
+		<!-- enrolled Detais view -->
+		<action name="enrolledDetailView" 
+			class="org.mz.action.EnrolledDetailViewAction">
+			<result name="success">/pages/admin/enrolledDetailView.jsp</result>
+		</action>
+		<!-- Enrolled Details view End -->
+		
+		
+		
+		<!-- Adding of Employee -->
+		<action name="addingEmployee" 
+			class="org.mz.action.AddingEmployee">
+			<result name="success">/pages/admin/addEmployee.jsp</result>
+			<result name="input">/pages/admin/addEmployee.jsp</result>
+		</action>
+		<!-- Adding of Employee end -->
+		
+		
+		
+		<!-- edit of employee -->
+		<action name="editEmployeeDetails"
+			class="org.mz.action.EditEmployeeDetails">
+			<result name="success"></result>
+			<result name="error"></result>
+			<result name="input"></result>
+		</action>
+		<!--  edit of employee End -->
+		
+		
+		
+		<!-- delete of employee -->
+		<action name="deleteEmployeeDetails"
+			class="org.mz.action.DeleteEmployeeDetails">
+			<result name="success">/pages/admin/viewEmployee.jsp</result>
+			<result name="error"></result>
+		</action>
+		<!--  delete of employee End -->
+		
+		
+		
+		<!--  Adding of feeStructure to database -->
+		<action name="addingFeeStructure" 
+			class="org.mz.action.AddingFeeStructureAction">
+			<result name="success">/pages/admin/feestructure.jsp</result>
+		</action>
+		<!--  Adding of feeStructure to database end -->
+		
+		<!--  updating in feeStructure to database -->
+		<action name="modify" 
+			class="org.mz.action.UpdatingFeeStructureAction">
+			<result name="success">/pages/admin/feestructure.jsp</result>
+		</action>
+		<!--  updating in feeStructure to database end -->
+		
+		<!--  deletion of feeStructure -->
+		<action name="deleteFeeStructure" 
+			class="org.mz.action.DeleteFeeStructureAction">
+			<result name="success">/pages/admin/feestructure.jsp</result>
+		</action>
+		<!--  deletion of FeeStructure -->
+		
+		<!-- Adding of fees details -->
+		<action name="addFeesToDb" 
+			class="org.mz.action.AddingFeesToDb">
+			<result name="success" type="json"></result>
+			<result name="error"></result>
+		</action>
+		<!-- Adding of fees details End -->
+		
+		<!-- change of Payment Status -->
+		<action name="changePaymentStatus" 
+			class="org.mz.action.ChangePaymentStatus">
+			<result name="success">/pages/admin/enrolledDetailView.jsp</result>
+			<result name="error"></result>
+		</action>
+		<!-- change of payment status End -->
+		
+		
+			<!-- Forget Password of Trainee -->
+		<action name="forgetPasswordTrainee" 
+			class="org.mz.action.ForgetPasswordTrainee">
+		</action>
+		<!-- Forget Password Of Trainee End-->
+		
+		
+	</package>
+
+
+</struts>
